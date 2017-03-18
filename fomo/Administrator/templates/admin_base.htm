@@ -1,0 +1,22 @@
+<%inherit file="homepage/templates/base.htm" />
+
+
+
+  <%block name="menu_items">
+    <li class="${ 'active' if(request.dmp_router_page == 'index') else '' }"><a href="/homepage/index">Home</a></li>
+    <!-- <li><a href="/homepage/about">About</a></li> -->
+    <li class="${ 'active' if(request.dmp_router_page == 'products') else '' }"><a href="/Administrator/products">Products</a></li>
+
+    <li class="${ 'active' if(request.dmp_router_page == 'users') else '' }"><a href="/Administrator/users">Users</a></li>
+
+    <li class="${ 'active' if(request.dmp_router_page == 'catalog') else '' }"><a href="/catalog/index">Catalog</a></li>
+
+
+
+      <%block name="navbar_right">
+              <li class="${ 'active' if(request.dmp_router_page == 'users') else '' }"><a href="/Administrator/products">Settings</a></li>
+
+      </%block>
+
+
+  </%block>

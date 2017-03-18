@@ -1,0 +1,47 @@
+<%inherit file="catalog_base.htm" />
+
+<%block name="middle_content">
+
+<form action="/catalog/search" method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}"/>
+    <label for="Product">Search: </label>
+    <input id="instrument" type="text" name="instrument">
+    <input type="submit" value="OK">
+</form>
+
+<h1 align="center">Your search results</h1>
+<hr>
+
+
+%for p in products:
+<div class="tile-container">
+<a href="/catalog/detail/${p.id}">
+
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-responsive" src="${STATIC_URL}catalog/media/${p.pictures.all()[0].subdir }">
+  </div>
+
+  <div class="col-md-8">
+    <h3>${p.name}</h3>
+    <p>${p.pictures.all()[0].alttext}</p>
+    <p>$ ${p.price}</p>
+
+  </div>
+<div>
+</div>
+</a>
+
+
+
+</div>
+<hr>
+%endfor
+
+
+%if len(products) == 0:
+  <h3>Your search did not match any products.</h3>
+%endif
+
+
+</%block>

@@ -1,0 +1,234 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## imports
+<%! import django_mako_plus %>
+
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+    <!-- Tab icon -->
+      <!-- <link rel="icon" href="http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Music-icon.png"> -->
+      <link rel="icon" href="${STATIC_URL}homepage/media/fomo_logo.png">
+    <title>Welcome to Fomo</title>
+
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    ## render the css with the same name as this page
+    ${ django_mako_plus.link_css(self) }
+    <!-- <link rel="stylesheet" href="${STATIC_URL}fomo/bootstrap/css/bootstrap.min.css" > -->
+    <link rel="stylesheet" href="${STATIC_URL}fomo/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="${STATIC_URL}homepage/media/jquery.datetimepicker.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="${ STATIC_URL }homepage/media/jquery.datetimepicker.full.js"></script>
+    <script src="${STATIC_URL}homepage/media/jquery.loadmodal.js"></script>
+    <script src="${STATIC_URL}homepage/media/jquery.form.js"></script> <!-- Plug in Jquery form -->
+
+
+  </head>
+  <body>
+
+    <!--BREAD CRUMB -->
+  <!-- <ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Purchase</a></li>
+    <li><a href="#">Rent Instrument</a></li>
+    <li>Room rental</li>
+  </ul> -->
+    <!-- ${STATIC_URL}homepage/media/violin.png -->
+    <!-- <a href="#content">Skip to main content</a> -->
+
+<!-- MAINTENANCE MESSAGE  -->
+
+
+
+
+<!--     -->
+    <header>
+      <!-- <h3>Welcome to the homepage app!</h3> -->
+      <!-- <link rel="icon" href="${STATIC_URL}homepage/media/violin.png"> -->
+
+    </header>
+
+
+<p> </p
+<div class="container">
+
+  <div id="maintenance">
+    <p class="text-center">OUR WEBSITE IS CURRENTLY IN MAINTENANCE</p>
+  </div>
+
+
+
+  <div id="header_navbar" class="navbar">
+      <%block name="header_navbar1">
+
+      <nav class="navbar navbar-default">
+        <div class="row">
+        <div class="container">
+
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="index">FOMO</a> -->
+            <img class="img-responsive" id="fomo_logo" src="${STATIC_URL}homepage/media/fomo_logo.png">
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+              <%block name="menu_items">
+
+              <li class="${ 'active' if(request.dmp_router_page == 'index') else '' }"><a href="/homepage/index"><span class="glyphicon glyphicon-home"></span></a></li>
+              <!-- <li><a href="/homepage/about">About</a></li> -->
+              <li class="${ 'active' if(request.dmp_router_page == 'about') else '' }"><a href="/homepage/about/">About</a></li>
+              <!-- <li><a href="/homepage/contact">Contact</a></li> -->
+              <li class="${ 'active' if(request.dmp_router_page == 'contact') else '' }"><a href="/homepage/contact/">Contact</a></li>
+              <!-- <li><a href="faq">FAQ</a></li> -->
+              <li class="${ 'active' if(request.dmp_router_page == 'faq') else '' }"><a href="/homepage/faq/">Faq</a></li>
+              <!-- <li><a href="sections">Sections</a></li> -->
+              <li class="${ 'active' if(request.dmp_router_page == 'sections') else '' }"><a href="/homepage/sections/">Sections</a></li>
+
+              <li class="${ 'active' if(request.dmp_router_page == 'terms') else '' }"><a href="/homepage/terms/">Terms</a></li>
+
+              <li class="${ 'active' if(request.dmp_router_page == 'landing') else '' }"><a href="/homepage/landing/">Landing</a></li>
+
+              <li class="${ 'active' if(request.dmp_router_page == 'catalog') else '' }"><a href="/catalog/index/">Catalog</a></li>
+
+              %if request.user.has_perm('catalog.delete_product'):
+
+                <li class="${ 'active' if(request.dmp_router_page == 'Admin') else '' }"><a href="/Administrator/products/">Admin</a></li>
+              %endif
+
+
+            </ul>
+            <%block name="navbar_right">
+        <ul class="nav navbar-nav navbar-right">
+
+          %if not user.is_authenticated:
+
+         <li><a href="/account/registration">  Sign Up</a></li>
+          <!-- <li class="${ 'active' if(request.dmp_router_page == 'login_class') else '' }"><a href="/account/login_class/">Login  <span class="glyphicon glyphicon-user"></span></a></li> -->
+          <li><button class="btn btn-primary" id="modallogin_button">login</button></li>
+
+       %elif user.is_superuser:
+         <li><p id="welcome" >Welcome, ${ user.first_name }!</p></li>
+         <li><a href="/Administrator/index">Admin</a></li>
+         <li><a href="/account/logout/">Logout</a></li>
+       %else:
+         <!-- <li><p>Welcome, ${ user.first_name }!</p></li> -->
+
+
+
+         <li class="dropdown">
+               <a class="dropdown-toggle" data-toggle="dropdown">Account
+                 <span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+
+                   <!-- <li><a href="/admin/">Admin Page</a></li>
+                   <li><a href="/manager/">Manager Page</a></li>-->
+                   <li><a href="/account/index/ ">Home</a></li>
+                   <li><a href="/account/edit/${user.id}/">Edit Account</a></li>
+                   <li><a href="/account/password/${user.id}/">Change Password</a></li>
+                    <li><a href="/account/logout">Logout</a></li>
+
+                 </ul>
+          </li>
+
+         <!-- Login notification -->
+         <!-- <div class="alert alert-success alert-dismissible" id="alert" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <strong>Warning!</strong> You barely login, welcome valued customer.
+         </div> -->
+
+       %endif
+
+
+            </ul>
+
+            </%block>
+          </%block>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+      </nav>
+
+
+      %if request.user.is_authenticated:
+      <!-- <p class="text-center">Welcome ${request.user.username}</p> -->
+      <p class="text-center">Welcome ${request.user.first_name} ${request.user.last_name} </p>
+      %endif
+      </%block>
+    </div>
+
+<%block name="full_content">
+    <div class="container" id="content">
+        <div class="row">
+          <%block name="top_content">
+            <div class="col-md-12">
+          </%block></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-2">
+          <%block name="left_content">
+          </%block>
+
+        </div>
+
+        <div class="col-md-8">
+            <%block name="middle_content">
+            </%block>
+
+        </div>
+
+        <div class="col-md-2">
+          <%block name="right_content">
+          </%block>
+        </div>
+      </div>
+    </div>
+
+</%block>
+    <!-- <%block name="content">
+
+
+
+    </%block> -->
+
+
+    <%block name="footer">
+    <div id="myfooter">
+
+      <%! from datetime import datetime %>
+      &copy; Copyright Stephane Akoki  ${datetime.now().year}
+
+    </div>
+
+    </%block>
+
+    ## render the JS with the same name as this page
+    ${ django_mako_plus.link_js(self) }
+  </div>
+  </body>
+</html>
+
+<!-- PROJECT EXPECTATION
+fomo/
+occount/ - login, log out, signup, edit my account, change my pwd
+administrator/ add new products, edit product, detail, etc.
+catalog/ sales site, show product index, search, detail page
+homepage/ - index, contact, about
+
+
+
+-->

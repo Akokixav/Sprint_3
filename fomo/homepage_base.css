@@ -1,0 +1,51 @@
+.content{
+        color: blue;
+}
+
+#header_icon {
+  background-color: red;
+}
+
+#myfooter{
+  padding: 50px;
+  background-color: black;
+  /*position: absolute;*/
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+
+#header_navbar{
+}
+
+#fomo_logo{
+  height: auto;
+    width: auto;
+    max-height: 50px;
+    max-width: 250px;
+    padding-right: 10px;
+}
+
+#maintenance{
+  background-color: red;
+  margin-bottom:-11px;
+  margin-top: -10px;
+}
+
+  #alert{
+  position: fixed;
+  width: 250px;
+  top:73px;
+  right:50px;
+  z-index: 10000;
+  }
+
+  #welcome{
+     display: inline-block;
+  }
+
+  p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+  }

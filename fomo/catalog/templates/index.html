@@ -1,0 +1,84 @@
+<%inherit file="catalog_base.htm" />
+
+
+<%block name="left_content">
+
+<ul>
+ %for item in category:
+
+<li><a href="/catalog/index/${item.id  }">${item.name}</a></li>
+
+ %endfor
+ </ul>
+
+
+</%block>
+
+
+<%block name="middle_content">
+
+<!-- <form action="/catalog/search/" method="post" class="form-inline">
+    <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}"/>
+  <div class="form-group">
+    <label class="sr-only">Search</label>
+    <p class="form-control-static">Search Instruments</p>
+  </div>
+  <div class="form-group mx-sm-3">
+    <label for="instrument" class="sr-only">Instrument</label>
+    <input type="text" class="form-control" id="instrument" placeholder="instrument">
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form> -->
+
+<form action="/catalog/search" method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}"/>
+    <label for="Product">Search: </label>
+    <input id="instrument" type="text" name="instrument">
+    <input type="submit" value="Search">
+</form>
+
+
+%for product in products:
+    <div class="tile-container">
+      <div class="tile-image">
+        <a href="/catalog/detail/${product.id}">
+          <img class="img-responsive" src="${STATIC_URL}catalog/media/${product.pictures.all()[0].subdir}">
+        </a>
+
+      </div>
+
+      <div class="tile-text">
+        ${product.name}
+      </div>
+
+      <div class="price">
+        <a href="${STATIC_URL}catalog/detail/${product.id}" class="btn btn-danger btn-sm" role="button">BUY</a>
+          ${product.price}
+      </div>
+
+  </div>
+%endfor
+
+
+
+
+
+</%block>
+
+<%block name="right_content">
+<h4>Recently viewed items</h4>
+
+%for item in last5[0:5]:
+
+<div class="tile-container">
+<a href="/catalog/detail/${item.id}">
+  <div class="tile-image">
+   <img class="img-responsive" src="${STATIC_URL}catalog/media/${item.pictures.all()[0].subdir }">
+  </div>
+</a>
+</div>
+%endfor
+
+
+
+</%block>

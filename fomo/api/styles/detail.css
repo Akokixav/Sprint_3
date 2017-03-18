@@ -1,0 +1,22 @@
+.image-center > img {
+  width: 450px;
+
+
+}
+
+.text-description{
+
+}
+
+.right-info{
+  border-style: solid;
+  background-color: blue;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+}
+
+div.image-center{
+    position: relative;
+}

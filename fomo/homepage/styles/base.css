@@ -1,0 +1,66 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  height: inherit;
+  padding-bottom: 12rem;
+}
+
+#myfooter {
+  text-align: center;
+  padding: 3rem;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.content {
+        color: blue;
+}
+
+#header_icon {
+  background-color: red;
+}
+
+#header_navbar{
+  /*padding-top: 20px;*/
+}
+
+#fomo_logo{
+  height: auto;
+    width: auto;
+    max-height: 50px;
+    max-width: 250px;
+    padding-right: 10px;
+}
+
+#maintenance{
+  background-color: red;
+}
+
+#nihao{
+  position: absolute;
+  top: 10;
+  right: 10;
+}
+
+div#nihao.alert.alert-warning.alert-dismissible{
+    margin-bottom: 0px;
+}
+
+#alert{
+position: fixed;;
+width: 250px;
+top:20px;
+right:50px;
+}
+
+#welcome{
+   display: inline-block;
+}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}

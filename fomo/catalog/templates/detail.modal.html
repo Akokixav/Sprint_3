@@ -1,0 +1,20 @@
+<%inherit file="homepage/templates/base_ajax.htm"/>
+<%! from catalog import models as cmod %>
+
+<%block name="content">
+
+<% product1 = cmod.Product.objects.get(id=request.urlparams[0]) %>
+      %for pimage in cmod.ProductPictures.objects.filter(product=product1):
+               <img class="img-responsive" src="${STATIC_URL}catalog/media/${ pimage.subdir }" />
+       %endfor
+
+
+
+<!-- <img class="img-responsive" src="${STATIC_URL}catalog/media/trumpet.png" />
+<img class="img-responsive" src="${STATIC_URL}catalog/media/horn.png" /> -->
+<button id="previous_pic_button" type="button" class="btn btn-primary">Previous</button>
+<button id="next_pic_button" type="button" class="btn btn-primary">Next</button>
+
+
+
+</%block>

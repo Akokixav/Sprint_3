@@ -1,0 +1,12 @@
+Git and branches
+---------->
+
+git checkout -b updatenotes
+git commit -m "    "
+git push origin updatenotes
+
+After you push changes (git push origin branchname)
+1. Git  checkout master
+2. Git merge branchname
+
+If you don't want to merge, you could do a pull request ---> My team can review it [Bit bucket]

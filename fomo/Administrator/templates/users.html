@@ -1,0 +1,39 @@
+<%inherit file="admin_base.htm" />
+
+<%block name="middle_content">
+    <div class="content">
+        <a href="/Administrator/create_user/">Create user</a>
+      <h1 class="text-center">Users: </h1>
+
+
+
+      <table class="table table striped">
+        <tr>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Registration date</th>
+        </tr>
+
+        %for u in userlist:
+
+
+        <tr>
+          <td>${u.username}</td>
+          <td>${u.first_name}</td>
+          <td>${u.last_name}</td>
+          <td>${u.email}</td>
+          <td>${u.date_joined}</td>
+          <td><a href="/Administrator/users.edit/${u.id}/">Edit</a></td>
+          <td><a href="/Administrator/users.delete/${u.id}/">Delete</a></td>
+
+        <tr>
+        % endfor
+      </table>
+
+
+    </div>
+
+
+</%block>
